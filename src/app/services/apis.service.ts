@@ -23,6 +23,8 @@ export interface LeadProperties {
   company: string;
   website: string;
   jobtitle: string;
+  // category:string;
+  // budget:string;
   hsLeadStatus: string;
   lifecyclestage: string;
 }

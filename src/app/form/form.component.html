@@ -1,46 +1,97 @@
 <form #leadForm="ngForm" (ngSubmit)="createContact()">
-  <div class="modal-body" style="min-height: 440px;">
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
-      <div class="col-md-6 form-group required mb-2">
-        <label class="col-form-label fw-normal w-100" for="name">
-          {{ "First Name"  }}
-        </label>
-        <input type="text" maxlength="128" id="firstname" [(ngModel)]="lead.properties.firstname" 
-              placeholder="First Name" name="firstname" required />
+    <div class="container mt-5 bg-form">
+      <h2 class="text-center mb-4 fw-bold">HubSpot Leads</h2>
+      <div class="row g-3">
+  
+        <!-- First Name -->
+        <div class="col-md-6">
+          <label for="firstname" class="form-label fw-bold">First Name</label>
+          <input type="text" maxlength="128" id="firstname" class="form-control" 
+                 [(ngModel)]="lead.properties.firstname" placeholder="First Name" 
+                 name="firstname" required>
+        </div>
+  
+        <!-- Last Name -->
+        <div class="col-md-6">
+          <label for="lastname" class="form-label fw-bold">Last Name</label>
+          <input type="text" id="lastname" maxlength="128" class="form-control" 
+                 [(ngModel)]="lead.properties.lastname" placeholder="Last Name" 
+                 name="lastname" required>
+        </div>
+  
+        <!-- Mobile -->
+        <div class="col-md-6">
+          <label for="phone" class="form-label fw-bold">Mobile</label>
+          <input type="text" id="phone" pattern="[6789][0-9]{9}" 
+                 class="form-control" placeholder="Mobile" maxlength="10" 
+                 [(ngModel)]="lead.properties.phone" name="phone" required>
+        </div>
+  
+        <!-- Email -->
+        <div class="col-md-6">
+          <label for="email" class="form-label fw-bold">Email</label>
+          <input type="email" id="email" class="form-control" maxlength="128" 
+                 [(ngModel)]="lead.properties.email" placeholder="Email" 
+                 name="email" required>
+        </div>
+  
+         <!-- Company -->
+         <div class="col-md-6">
+          <label for="company" class="form-label fw-bold">Company</label>
+          <input type="text" id="company" class="form-control" maxlength="128" 
+                 [(ngModel)]="lead.properties.company" placeholder="Company" 
+                 name="company">
+        </div>
+  
+        <!-- Website -->
+        <div class="col-md-6">
+          <label for="website" class="form-label fw-bold">Website</label>
+          <input type="url" id="website" class="form-control" maxlength="128" 
+                 [(ngModel)]="lead.properties.website" placeholder="Website" 
+                 name="website">
+        </div>
+  
+        <!-- Category -->
+        <!-- <div class="col-md-6">
+          <label for="category" class="form-label fw-bold">Category</label>
+          <select id="category" class="form-select" [(ngModel)]="lead.properties.category" name="category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="Software">Software</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Consulting">Consulting</option>
+          </select>
+        </div> -->
+  
+        <!-- Budget -->
+        <!-- <div class="col-md-6">
+          <label for="budget" class="form-label fw-bold">Budget (USD)</label>
+          <select id="budget" class="form-select" [(ngModel)]="lead.properties.budget" name="budget" required>
+            <option value="" disabled selected>Select Budget</option>
+            <option value="1000">$1000 - $2000</option>
+            <option value="3000">$3000 - $4000</option>
+            <option value="5000">$5000 - $6000</option>
+            <option value="7000">$7000 - $8000</option>
+            <option value="9000">$9000 - $10,000</option>
+          </select>
+        </div> -->
+  
+        <!-- Message -->
+         <div class="col-md-12">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                    <label for="jobtitle" class="form-label fw-bold">Message</label>
+                    <textarea id="jobtitle"  class="form-control" rows="2" 
+                              [(ngModel)]="lead.properties.jobtitle" name="jobtitle" required></textarea>
+                </div>
+            </div>
+         </div>
+  
+        <!-- Submit Button -->
+        <div class="col-12 text-center mt-4">
+          <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
+        </div>
+  
       </div>
-
-      <div class="col-md-6 form-group mb-2">
-        <label class="col-form-label fw-normal w-100" for="surname">
-          {{ "Last Name" }}
-        </label>
-        <input type="text" id="lastname" maxlength="128" placeholder="Last Name" 
-             [(ngModel)]="lead.properties.lastname" name="lastname" required />
-      </div>
-
-      <div class="col-md-6 form-group required mb-2">
-        <label class="col-form-label fw-normal w-100" for="phoneNumber">
-          {{ "Mobile"  }}
-        </label>
-        <input type="text" id="phone" pattern="[6789][0-9]{9}" placeholder="Mobile" maxlength="128"
-           [(ngModel)]="lead.properties.phone" name="phone" required />
-      </div>
-
-      <div class="col-md-6 form-group required mb-2">
-        <label class="col-form-label fw-normal w-100" for="emailAddress">
-          {{ "Email"  }}
-        </label>
-          <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$" id="email" 
-          maxlength="128" [(ngModel)]="lead.properties.email" placeholder="email"  name="email" required />
-      </div>
-
-      <div class="col-md-6 form-group mb-2">
-        <label class="col-form-label fw-normal w-100" for="surname">
-          {{ "Massages" }}
-        </label>
-
-        <textarea type="text" id="jobtitle" style="width: 500px;"  required [(ngModel)]="lead.properties.jobtitle" name="jobtitle" ></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-  </div>
-</form>
+  </form>
+  

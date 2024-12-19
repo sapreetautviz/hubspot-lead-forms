@@ -20,6 +20,8 @@ export class FormComponent {
       company: '',
       website: '',
       jobtitle: '',
+      // category:'',
+      // budget:'',
       hsLeadStatus: 'NEW', // You can set the default value here
       lifecyclestage: 'lead',
     },
@@ -39,37 +41,6 @@ export class FormComponent {
       }
     );
   }
-
-
-  // onSubmit(form: any) {
-  //   debugger
-  //   if (form.valid) {
-  //     const lead: HubSpotLead = {
-  //       id: 0,
-  //       date: new Date(),
-  //       firstName: form.value.name,
-  //       lastName: form.value.surname ,
-  //       phoneNumber: form.value.phoneNumber,
-  //       email: form.value.emailAddress,
-  //       category: 'Unknown', 
-  //       budget: 0, 
-  //       discrption: form.value.message,
-  //     };
-
-  //     this.apiService.addLead(lead).subscribe({
-  //       next: (response) => {
-  //         console.log('Lead added successfully:', response);
-  //         alert('Lead added successfully!');
-  //       },
-  //       error: (err) => {
-  //         console.error('Error adding lead:', err);
-  //         alert('Error adding lead.');
-  //       },
-  //     });
-  //   } else {
-  //     alert('Please fill in all required fields.');
-  //   }
-  // }
 
 
 }
