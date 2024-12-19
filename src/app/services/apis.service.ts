@@ -15,6 +15,23 @@ export interface HubSpotLead {
   discrption: string;
 }
 
+export interface LeadProperties {
+  email: string;
+  firstname: string;
+  lastname: string;
+  phone: string;
+  company: string;
+  website: string;
+  jobtitle: string;
+  hsLeadStatus: string;
+  lifecyclestage: string;
+}
+
+// leadDTO interface
+export interface LeadDTO {
+  properties: LeadProperties;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +46,14 @@ export class ApisService {
   
   addLead(lead: HubSpotLead): Observable<HubSpotLead> {
     return this.http.post<HubSpotLead>(`${this.apiUrl}/api/AIAgent/HubSpot-Lead-Creating`, lead, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
+   createContact(leadDTO: LeadDTO): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/AIAgent/Contact-Creating`, leadDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),

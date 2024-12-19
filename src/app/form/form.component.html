@@ -1,45 +1,44 @@
-<form #leadForm="ngForm" (ngSubmit)="onSubmit(leadForm)">
+<form #leadForm="ngForm" (ngSubmit)="createContact()">
   <div class="modal-body" style="min-height: 440px;">
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
       <div class="col-md-6 form-group required mb-2">
         <label class="col-form-label fw-normal w-100" for="name">
           {{ "First Name"  }}
         </label>
-        <input type="text" class="form-control" placeholder="First Name"name="name"id="name1"
-         maxlength="128"  required ngModel
-        />
+        <input type="text" maxlength="128" id="firstname" [(ngModel)]="lead.properties.firstname" 
+              placeholder="First Name" name="firstname" required />
       </div>
 
       <div class="col-md-6 form-group mb-2">
         <label class="col-form-label fw-normal w-100" for="surname">
           {{ "Last Name" }}
         </label>
-        <input  type="text" class="form-control" placeholder="Last Name" name="surname" 
-        id="surname1" maxlength="128" ngModel
-        />
+        <input type="text" id="lastname" maxlength="128" placeholder="Last Name" 
+             [(ngModel)]="lead.properties.lastname" name="lastname" required />
       </div>
 
       <div class="col-md-6 form-group required mb-2">
         <label class="col-form-label fw-normal w-100" for="phoneNumber">
           {{ "Mobile"  }}
         </label>
-        <input type="tel" pattern="[6789][0-9]{9}" class="form-control" placeholder="Mobile" 
-        name="phoneNumber" ngModel id="phoneNumber1" maxlength="128" required/>
+        <input type="text" id="phone" pattern="[6789][0-9]{9}" placeholder="Mobile" maxlength="128"
+           [(ngModel)]="lead.properties.phone" name="phone" required />
       </div>
 
       <div class="col-md-6 form-group required mb-2">
         <label class="col-form-label fw-normal w-100" for="emailAddress">
           {{ "Email"  }}
         </label>
-        <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$" class="form-control" placeholder="Email"
-          name="emailAddress" id="emailAddress1" maxlength="128" required ngModel />
+          <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$" id="email" 
+          maxlength="128" [(ngModel)]="lead.properties.email" placeholder="email"  name="email" required />
       </div>
 
       <div class="col-md-6 form-group mb-2">
         <label class="col-form-label fw-normal w-100" for="surname">
           {{ "Massages" }}
         </label>
-        <textarea id="message" name="message"  style="width: 500px;" required ngModel></textarea>
+
+        <textarea type="text" id="jobtitle" style="width: 500px;"  required [(ngModel)]="lead.properties.jobtitle" name="jobtitle" ></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
