@@ -1,15 +1,22 @@
-import { Component, ViewChild } from '@angular/core';
-import { ApisService, HubSpotLead, LeadDTO } from '../services/apis.service';
+import { Component, Injector, viewChild } from '@angular/core';
+import { ApisService, LeadDTO } from '../services/apis.service';
 import { FormsModule, NgForm } from '@angular/forms';
-
+import { ToastrModule, ToastrService } from 'ngx-toastr'; 
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ToastrModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+
+  constructor(
+    private toastr: ToastrService,
+    private apiService: ApisService
+  ) {
+  }
 
   lead: LeadDTO = {
     properties: {
@@ -22,25 +29,25 @@ export class FormComponent {
       jobtitle: '',
       // category:'',
       // budget:'',
-      hsLeadStatus: 'NEW', // You can set the default value here
+      hsLeadStatus: 'NEW',
       lifecyclestage: 'lead',
     },
   };
 
-  @ViewChild('leadForm') leadForm!: NgForm; 
-  
-  constructor(private apiService: ApisService) {}
-
-  createContact(): void {
-    this.apiService.createContact(this.lead).subscribe(
-      (response) => {
-        console.log('Contact created successfully', response);
-      },
-      (error) => {
-        console.error('Error creating contact', error);
-      }
-    );
+  createContact(form: NgForm): void {
+    if (form.valid) {
+      this.apiService.createContact(this.lead).subscribe(
+        (response) => {
+          console.log(response);
+          this.toastr.success('Contact created successfully');
+        },
+        (error) => {
+          this.toastr.error('Error creating contact');
+        }
+      );
+    } else {
+      this.toastr.error('Please fill all required fields correctly');
+    }
   }
-
-
 }
+
